@@ -286,6 +286,10 @@ interface IBluetooth
 
     @UnsupportedAppUsage
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
+    void setBondingInitiatedLocally(in BluetoothDevice devicei, in boolean localInitiated, in AttributionSource attributionSource);
+
+    @UnsupportedAppUsage
+    @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
     boolean isTwsPlusDevice(in BluetoothDevice device, in AttributionSource attributionSource);
 
     @UnsupportedAppUsage
