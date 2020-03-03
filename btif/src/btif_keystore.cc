@@ -141,4 +141,8 @@ bool BtifKeystore::GenerateKey(const std::string& name, int32_t flags) {
   return true;
 }
 
+bool BtifKeystore::DoesKeyExist() {
+  return keystore_client_->doesKeyExist(kKeyStore);
+}
+
 }  // namespace bluetooth
