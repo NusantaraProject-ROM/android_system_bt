@@ -282,6 +282,10 @@ interface IBluetooth
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT,android.Manifest.permission.BLUETOOTH_PRIVILEGED})")
     void generateLocalOobData(in int transport, IBluetoothOobDataCallback callback, in AttributionSource attributionSource);
 
+    @UnsupportedAppUsage
+    @JavaPassthrough(annotation="@android.annotation.RequiresPermission(allOf={android.Manifest.permission.BLUETOOTH_CONNECT,android.Manifest.permission.BLUETOOTH_PRIVILEGED})")
+    int getDeviceType(in BluetoothDevice device, in AttributionSource attributionSource);
+
     // Value Added
 
     @UnsupportedAppUsage
@@ -300,7 +304,8 @@ interface IBluetooth
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
     void updateQuietModeStatus(boolean quietMode, in AttributionSource attributionSource);
 
-     @UnsupportedAppUsage
+    @UnsupportedAppUsage
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
     boolean isBroadcastActive(in AttributionSource attributionSource);
+
 }
