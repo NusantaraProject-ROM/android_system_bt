@@ -299,4 +299,8 @@ interface IBluetooth
     @UnsupportedAppUsage
     @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
     void updateQuietModeStatus(boolean quietMode, in AttributionSource attributionSource);
+
+     @UnsupportedAppUsage
+    @JavaPassthrough(annotation="@android.annotation.RequiresPermission(android.Manifest.permission.BLUETOOTH_CONNECT)")
+    boolean isBroadcastActive(in AttributionSource attributionSource);
 }
