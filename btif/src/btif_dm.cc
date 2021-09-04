@@ -102,6 +102,9 @@ const Uuid UUID_HEARING_AID = Uuid::FromString("FDF0");
 #ifndef PROPERTY_PRODUCT_MODEL
 #define PROPERTY_PRODUCT_MODEL "ro.product.model"
 #endif
+#ifndef PROPERTY_PRODUCT_MARKETNAME
+#define PROPERTY_PRODUCT_MARKETNAME "ro.product.marketname"
+#endif
 #define DEFAULT_LOCAL_NAME_MAX 31
 #if (DEFAULT_LOCAL_NAME_MAX > BTM_MAX_LOC_BD_NAME_LEN)
 #error "default btif local name size exceeds stack supported length"
@@ -3263,9 +3266,11 @@ static char* btif_get_default_local_name() {
     if (BTM_DEF_LOCAL_NAME[0] != '\0') {
       strncpy(btif_default_local_name, BTM_DEF_LOCAL_NAME, max_len);
     } else {
+      char name[PROPERTY_VALUE_MAX];
       char prop_model[PROPERTY_VALUE_MAX];
       osi_property_get(PROPERTY_PRODUCT_MODEL, prop_model, "");
-      strncpy(btif_default_local_name, prop_model, max_len);
+      osi_property_get(PROPERTY_PRODUCT_MARKETNAME, name, prop_model);
+      strncpy(btif_default_local_name, name, max_len);
     }
     btif_default_local_name[max_len] = '\0';
   }
