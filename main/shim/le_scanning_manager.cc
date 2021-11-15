@@ -159,12 +159,13 @@ class BleScannerInterfaceImpl : public BleScannerInterface,
   }
 
   /** Sets the LE scan interval and window in units of N*0.625 msec */
-  void SetScanParameters(int scan_interval, int scan_window, Callback cb) {
+  void SetScanParameters(int scan_phy, std::vector<uint32_t> scan_interval,
+                         std::vector<uint32_t> scan_window,
+                         Callback cb) {
     LOG(INFO) << __func__ << " in shim layer";
     // use active scan
     auto scan_type = static_cast<bluetooth::hci::LeScanType>(0x01);
-    bluetooth::shim::GetScanning()->SetScanParameters(scan_type, scan_interval,
-                                                      scan_window);
+    bluetooth::shim::GetScanning()->SetScanParameters(scan_type, scan_interval[0], scan_window[0]);
     do_in_jni_thread(FROM_HERE, base::Bind(cb, 0));
   }
 
@@ -331,6 +332,15 @@ class BleScannerInterfaceImpl : public BleScannerInterface,
                               uint8_t status){};
 
   ScanningCallbacks* scanning_callbacks_;
+
+  void CancelCreateSync(uint8_t sid, RawAddress address) override {}
+  void TransferSync(RawAddress address, uint16_t service_data,
+                         uint16_t sync_handle, SyncTransferCb cb) override {}
+
+  void TransferSetInfo(RawAddress address, uint16_t service_data,
+                         uint8_t adv_handle, SyncTransferCb cb) override {}
+  void SyncTxParameters(RawAddress address, uint8_t mode, uint16_t skip,
+                         uint16_t timeout, StartSyncCb cb) override {}
 
  private:
   bool parse_filter_command(
