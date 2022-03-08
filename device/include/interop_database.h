@@ -147,9 +147,15 @@ static const interop_addr_entry_t interop_addr_database[] = {
     // AirPods 2 - unacceptably loud volume
     {{{0x9c, 0x64, 0x8b, 0, 0, 0}}, 3, INTEROP_DISABLE_ABSOLUTE_VOLUME},
 
+    // Phonak AG - volume level not change
+    {{{0x00, 0x0f, 0x59, 0, 0, 0}}, 3, INTEROP_DISABLE_ABSOLUTE_VOLUME},
+
     // for skip name request,
     // because BR/EDR address and ADV random address are the same
     {{{0xd4, 0x7a, 0xe2, 0, 0, 0}}, 3, INTEROP_DISABLE_NAME_REQUEST},
+
+    // Audi Carkit
+    {{{0x90, 0x03, 0xb7, 0, 0, 0}}, 3, INTEROP_AVRCP_1_4_ONLY},
 
     // Lexus Carkit
     {{{0x64, 0xd4, 0xbd, 0, 0, 0}}, 3, INTEROP_AVRCP_1_4_ONLY},
@@ -171,6 +177,9 @@ static const interop_addr_entry_t interop_addr_database[] = {
 
     // KDDI Carkit
     {{{0x44, 0xea, 0xd8, 0, 0, 0}}, 3, INTEROP_DISABLE_SNIFF},
+
+    // Phonak
+    {{{0x70, 0x66, 0x1b, 0, 0, 0}}, 3, INTEROP_DISABLE_SNIFF},
 
     // Toyota Camry 2018 Carkit HFP AT+BIND missing
     {{{0x94, 0xb2, 0xcc, 0x30, 0, 0}}, 4, INTEROP_SLC_SKIP_BIND_COMMAND},
